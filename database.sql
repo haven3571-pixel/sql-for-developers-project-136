@@ -55,11 +55,11 @@ CREATE TABLE lessons (
     id BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     name VARCHAR(64) NOT NULL,
     content TEXT NOT NULL,
-    video_url VARCHAR(64) NOT NULL,
-    position SMALLINT NOT NULL,
+    video_url VARCHAR(64),
+    position SMALLINT,
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP NOT NULL,
-    course_id BIGINT NOT NULL REFERENCES courses (id),
+    course_id BIGINT REFERENCES courses (id),
     deleted_at TIMESTAMP
 );
 
