@@ -21,7 +21,7 @@ DROP TYPE IF EXISTS payment_status;
 DROP TYPE IF EXISTS completion_status;
 DROP TYPE IF EXISTS blog_status;
 
-CREATE TYPE roles AS ENUM('student', 'tutor', 'admin');
+CREATE TYPE roles AS ENUM('Student', 'Teacher', 'Admin');
 CREATE TYPE subscription_status AS ENUM ('active', 'pending', 'cancelled', 'completed');
 CREATE TYPE payment_status AS ENUM ('pending', 'paid', 'failed', 'refunded');
 CREATE TYPE completion_status AS ENUM ('active', 'completed', 'pending', 'cancelled');
@@ -87,13 +87,13 @@ CREATE TABLE teaching_groups (
 
 CREATE TABLE users (
     id BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    name VARCHAR(32) NOT NULL,
-    email VARCHAR(32) NOT NULL,
-    password_hash VARCHAR(32) NOT NULL,
+    name VARCHAR(64) NOT NULL,
+    email VARCHAR(64) NOT NULL,
+    password_hash VARCHAR(255),
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP NOT NULL,
     deleted_at TIMESTAMP,
-    teaching_group_id BIGINT NOT NULL REFERENCES teaching_groups (id),
+    teaching_group_id BIGINT REFERENCES teaching_groups (id),
     role roles NOT NULL
 );
 
